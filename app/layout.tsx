@@ -13,6 +13,16 @@ export const metadata: Metadata = {
   icons: {
     icon: '/icon.svg',
   },
+  openGraph: {
+    title: "Henri Yan",
+    description: "Henri Yan's Portfolio",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Henri Yan",
+    description: "Henri Yan's Portfolio",
+  },
 }
 
 export default function RootLayout({
