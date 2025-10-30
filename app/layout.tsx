@@ -8,7 +8,7 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Henri Yan",
-  description: "An interactive portfolio designed like an artist's sketchbook",
+  description: "Henri Yan's Portfolio",
   generator: "v0.app",
   icons: {
     icon: '/icon.svg',
