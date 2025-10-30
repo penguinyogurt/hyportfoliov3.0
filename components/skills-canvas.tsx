@@ -38,30 +38,58 @@ export function SkillsCanvas() {
   const [maxZIndex, setMaxZIndex] = useState(9999)
 
   useEffect(() => {
-    if (containerRef.current && sectionRef.current) {
-      const container = containerRef.current
-      const section = sectionRef.current
-      const containerRect = container.getBoundingClientRect()
-      const sectionRect = section.getBoundingClientRect()
+    const initializeNotes = () => {
+      if (containerRef.current && sectionRef.current) {
+        const container = containerRef.current
+        const section = sectionRef.current
+        const containerRect = container.getBoundingClientRect()
+        const sectionRect = section.getBoundingClientRect()
 
-      const containerOffsetX = containerRect.left - sectionRect.left
-      const containerOffsetY = containerRect.top - sectionRect.top
+        const containerOffsetX = containerRect.left - sectionRect.left
+        const containerOffsetY = containerRect.top - sectionRect.top
 
-      const width = container.offsetWidth
-      const height = 600
+        const width = container.offsetWidth
+        const isMobile = width < 768
+        const height = isMobile ? 800 : 600
+        
+        const initializedNotes = initialSkills.map((skill, index) => {
+          let x, y
+          
+          if (isMobile) {
+            // Mobile: Arrange in 2 columns with better centering
+            const noteWidth = 160
+            const gap = 20
+            const totalNotesWidth = (noteWidth * 2) + gap
+            const leftMargin = (width - totalNotesWidth) / 2
+            x = containerOffsetX + leftMargin + ((index % 2) * (noteWidth + gap))
+            y = containerOffsetY + 60 + (Math.floor(index / 2) * 110)
+          } else {
+            // Desktop: Original 4-column layout
+            x = containerOffsetX + 100 + ((index % 4) * (width - 300)) / 3
+            y = containerOffsetY + 100 + (Math.floor(index / 4) * (height - 300)) / 2
+          }
+          
+          return {
+            ...skill,
+            id: index,
+            x,
+            y,
+            rotation: Math.random() * 6 - 3,
+            zIndex: 9999 + index,
+          }
+        })
 
-      const initializedNotes = initialSkills.map((skill, index) => ({
-        ...skill,
-        id: index,
-        x: containerOffsetX + 100 + ((index % 4) * (width - 300)) / 3,
-        y: containerOffsetY + 100 + (Math.floor(index / 4) * (height - 300)) / 2,
-        rotation: Math.random() * 6 - 3,
-        zIndex: 9999 + index,
-      }))
-
-      setNotes(initializedNotes)
-      setMaxZIndex(9999 + initialSkills.length)
+        setNotes(initializedNotes)
+        setMaxZIndex(9999 + initialSkills.length)
+      }
     }
+    
+    initializeNotes()
+    
+    // Recalculate on window resize
+    window.addEventListener('resize', initializeNotes)
+    
+    return () => window.removeEventListener('resize', initializeNotes)
   }, [])
 
   const handleMouseDown = (e: React.MouseEvent, id: number) => {
@@ -132,7 +160,7 @@ export function SkillsCanvas() {
 
         <div
           ref={containerRef}
-          className="relative w-full min-h-[600px] border-2 border-dashed border-border rounded-lg bg-muted/20"
+          className="relative w-full min-h-[800px] md:min-h-[600px] border-2 border-dashed border-border rounded-lg bg-muted/20"
           style={{ cursor: dragging !== null ? "grabbing" : "default" }}
         ></div>
       </div>
@@ -140,7 +168,7 @@ export function SkillsCanvas() {
       {notes.map((note) => (
         <div
           key={note.id}
-          className="absolute w-[200px] h-[150px] p-4 shadow-lg cursor-grab active:cursor-grabbing transition-shadow hover:shadow-xl"
+          className="absolute w-[160px] h-[120px] md:w-[200px] md:h-[150px] p-3 md:p-4 shadow-lg cursor-grab active:cursor-grabbing transition-shadow hover:shadow-xl"
           style={{
             left: note.x,
             top: note.y,
@@ -151,12 +179,12 @@ export function SkillsCanvas() {
           onMouseDown={(e) => handleMouseDown(e, note.id)}
         >
           {/* Sticky note tape effect */}
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-6 bg-background/40 border border-border" />
+          <div className="absolute -top-2 md:-top-3 left-1/2 -translate-x-1/2 w-12 h-4 md:w-16 md:h-6 bg-background/40 border border-border" />
 
           <div className="relative h-full flex flex-col justify-between text-background">
             <div>
-              <h3 className="text-lg font-bold mb-1">{note.name}</h3>
-              <span className="text-xs font-mono opacity-80">{note.category}</span>
+              <h3 className="text-base md:text-lg font-bold mb-1">{note.name}</h3>
+              <span className="text-[10px] md:text-xs font-mono opacity-80">{note.category}</span>
             </div>
           </div>
         </div>
