@@ -48,11 +48,10 @@ export function AboutPage() {
           <div className="space-y-6 observe-me opacity-0">
             <div className="relative p-6 border-2 border-border rounded-sm rotate-[-0.5deg] bg-card">
               <div className="absolute -top-3 -right-3 w-12 h-12 bg-accent rounded-full border-2 border-border flex items-center justify-center rotate-12">
-                <span className="text-2xl">🚀</span>
+                <span className="text-2xl">🩺</span>
               </div>
               <p className="text-lg leading-relaxed text-balance">
-                I'm a Biomedical Engineering student passionate about building innovative solutions at the intersection
-                of healthcare and technology. From AI automations to full-stack web applications, I love bringing ideas
+                I'm a Biomedical Engineering student passionate about building innovative solutions! From AI automations to full-stack web applications, I love bringing ideas
                 to life.
               </p>
             </div>
