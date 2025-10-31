@@ -52,7 +52,7 @@ export function AboutPage() {
               </div>
               <p className="text-lg leading-relaxed text-balance">
                 I'm a Biomedical Engineering student passionate about building innovative solutions at the intersection
-                of healthcare and technology. From full-stack web apps to AI automation systems, I love bringing ideas
+                of healthcare and technology. From AI automations to full stack web apps, I love bringing ideas
                 to life.
               </p>
             </div>
