@@ -62,7 +62,7 @@ export function AboutPage() {
             </div>
           </div>
 
-          {/* This is the Skills summary*/}
+          {/* This is the section for skills*/}
           
           <div className="space-y-4 observe-me opacity-0">
             {[
