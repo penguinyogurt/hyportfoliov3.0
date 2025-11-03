@@ -62,7 +62,8 @@ export function AboutPage() {
             </div>
           </div>
 
-          {/* Sticky notes */}
+          {/* This is the Skills summary*/}
+          
           <div className="space-y-4 observe-me opacity-0">
             {[
               { emoji: "💻", text: "Full-stack development", color: "bg-accent" },
