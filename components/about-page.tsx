@@ -57,7 +57,7 @@ export function AboutPage() {
             </div>
 
             <div className="relative p-6 border-2 border-border rounded-sm rotate-[0.5deg] bg-card">
-              <p className="text-lg leading-relaxed text-balance">Currently searching for Winter 2026 opportunities!</p>
+              <p className="text-lg leading-relaxed text-balance">Currently searching for Winter 2026 co-op opportunities!</p>
               <div className="absolute -bottom-2 -left-2 w-8 h-8 bg-primary rounded-sm rotate-45" />
             </div>
           </div>
