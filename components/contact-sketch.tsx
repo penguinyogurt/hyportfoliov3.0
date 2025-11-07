@@ -151,7 +151,7 @@ export function ContactSketch() {
                   <span className="font-mono text-sm">Available for work</span>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed text-balance">
-                  Currently accepting new projects and collaborations. Let's create something amazing together!
+                   Let's create something amazing together!
                 </p>
               </div>
             </div>
