@@ -9,7 +9,7 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Henri Yan",
   description: "Henri Yan's Portfolio",
-  generator: "v0.app",
+  generator: "Next.js",
   icons: {
     icon: '/icon.svg',
   },
